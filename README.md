@@ -69,3 +69,7 @@ For each trap, write what you saw and why it happened, in two or three lines of 
 **Trap 4 (EXTERNAL-IP):** EXTERNAL-IP 172.18.0.7 is inside Docker Desktop's private network, so my laptop can't reach it. I used http://localhost:8080 instead.
 
 **How to tell Trap 2 and Trap 3 apart:** The EndpointSlice. Empty means the selector is wrong. Pods listed on the wrong port means the targetPort is wrong.
+
+## 6. Your YAML vs the generated YAML
+
+strategy: {} and status: {}. My file works without them because they're optional. When Kubernetes creates the object it fills in defaults, so the strategy becomes a rolling update. status is written by the cluster to report the object's current state, so it never belongs in a file you apply.
